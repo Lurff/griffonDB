@@ -1,8 +1,10 @@
 const fs = require("fs")
 
 class DB {
-
-    async setItem(key,value){
+    /**
+    * @param {string} key
+    */
+    setItem(key,value){
 
         const file = JSON.parse(fs.readFileSync(`./database.json`,"utf-8"))
 
@@ -122,7 +124,17 @@ class DB {
         return typeof file[key]
 
     }
-
+    someArrayItem(key, callback){
+        const file = JSON.parse(fs.readFileSync(`./database.json`,"utf-8"))
+        return file[key].some(callback)
+    }
+    all(){
+       return JSON.parse(fs.readFileSync(`./database.json`,"utf-8"))
+    }
+    filter(callback){
+       const file = JSON.parse(fs.readFileSync(`./database.json`,"utf-8"))
+       return file.filter(callback)
+    }
 }
 
 module.exports = new DB()

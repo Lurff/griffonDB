@@ -135,6 +135,12 @@ class DB {
        const file = JSON.parse(fs.readFileSync(`./database.json`,"utf-8"))
        return file.filter(callback)
     }
+    startsWith(key){
+       return this.filter((db) => db.startsWith(key))
+    }
+    endsWith(key){
+       return this.filter((db) => db.endsWith(key))
+    }
 }
 
 module.exports = new DB()

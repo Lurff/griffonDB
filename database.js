@@ -121,7 +121,7 @@ class DB {
         
         if(!file[key]) return;
 
-        return typeof file[key]
+        return Array.isArray(file[key]) ? "array" :  typeof file[key]
 
     }
     someArrayItem(key, callback){

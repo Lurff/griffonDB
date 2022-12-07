@@ -135,6 +135,13 @@ class DB {
        const file = JSON.parse(fs.readFileSync(`./database.json`,"utf-8"))
        return file.filter(callback)
     }
+    /*
+    * @param {(value: any, key: string) => any} callback
+    **/
+    findItem(callback){
+       const [key, value] = this.all()
+       return fn(value, key) ? value : undefined
+    }
 }
 
 module.exports = new DB()

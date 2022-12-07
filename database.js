@@ -138,10 +138,11 @@ class DB {
     /*
     * @param {(value: any, key: string) => any} callback
     **/
-    findItem(callback){
-       const [key, value] = this.all()
-       return fn(value, key) ? value : undefined
-    }
+    findItem(callback) {
+      for(const allDB of this.all()){
+         return callback(allDB.value, allDB.ID) ? allDB.value : undefined
+      }
+   }  
 }
 
 module.exports = new DB()
